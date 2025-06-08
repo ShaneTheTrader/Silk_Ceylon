@@ -1,0 +1,38 @@
+<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background Circle -->
+    <circle cx="150" cy="150" r="140" fill="navy" stroke="gold" stroke-width="4"/>
+
+    <!-- Silk Ribbon -->
+    <path id="ribbon" d="M60,180 Q150,120 240,180" stroke="gold" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+    <!-- Sri Lanka Shape (Simplified) -->
+    <path id="island" d="M110,110 C130,70 170,70 190,110 C170,150 130,150 110,110 Z" fill="gold" stroke="black" stroke-width="2"/>
+
+    <!-- Filigree Decorative Pattern -->
+    <circle cx="150" cy="150" r="100" fill="none" stroke="gold" stroke-width="2" stroke-dasharray="4"/>
+
+    <!-- SilkCeylon Text -->
+    <text x="75" y="250" font-size="24" fill="gold" font-family="serif">SilkCeylon</text>
+</svg>
+
+<style>
+    /* Silk Ribbon Animation */
+    @keyframes flowing {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-5px); }
+        100% { transform: translateY(0px); }
+    }
+    #ribbon {
+        animation: flowing 2s infinite alternate ease-in-out;
+    }
+
+    /* Filigree Glow Effect */
+    @keyframes glow {
+        0% { stroke-opacity: 1; }
+        50% { stroke-opacity: 0.5; }
+        100% { stroke-opacity: 1; }
+    }
+    #island {
+        animation: glow 3s infinite alternate ease-in-out;
+    }
+</style>
