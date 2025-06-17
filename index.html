@@ -403,29 +403,24 @@
 </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="section contact">
-    <div class="container">
-      <div class="section-header">
-        <h2>Contact Us</h2>
-      </div>
-      <div class="contact-wrapper">
-        <form name="contact" method="POST" netlify data-aos="fade-up">
-          <input type="hidden" name="form-name" value="contact" />
-
-          <input type="text" name="name" placeholder="Your Name" required />
-          <input type="email" name="email" placeholder="Your Email" required />
-          <textarea name="message" placeholder="Your Message" required></textarea>
-
-          <button type="submit" class="btn btn-primary">Send Message</button>
-        </form>
-          <input type="text" placeholder="Your Name" required />
-          <input type="email" placeholder="Your Email" required />
-          <textarea placeholder="Your Message" required></textarea>
-          <button type="submit" class="btn btn-primary">Send Message</button>
-        </form>
-      </div>
+<section id="contact" class="section contact">
+  <div class="container">
+    <div class="section-header">
+      <h2>Contact Us</h2>
     </div>
-  </section>
+    <div class="contact-wrapper">
+      <form name="contact" method="POST" netlify data-aos="fade-up" class="contact-form">
+        <input type="hidden" name="form-name" value="contact" />
+        
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <textarea name="message" placeholder="Your Message" required></textarea>
+        
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
 
   <!-- Footer -->
   <footer class="footer">
