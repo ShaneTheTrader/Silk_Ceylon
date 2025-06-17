@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="canonical" href="https://silkceylon.com/index.html" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Silk Ceylon by D&I Lanka Trading | Luxury Sri Lanka Travel</title>
@@ -408,7 +409,15 @@
         <h2>Contact Us</h2>
       </div>
       <div class="contact-wrapper">
-        <form class="contact-form" data-aos="fade-up">
+        <form name="contact" method="POST" netlify data-aos="fade-up">
+          <input type="hidden" name="form-name" value="contact" />
+
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Your Email" required />
+          <textarea name="message" placeholder="Your Message" required></textarea>
+
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
           <input type="text" placeholder="Your Name" required />
           <input type="email" placeholder="Your Email" required />
           <textarea placeholder="Your Message" required></textarea>
