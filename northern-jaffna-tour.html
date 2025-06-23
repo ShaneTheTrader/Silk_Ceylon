@@ -140,6 +140,35 @@
       </div>
     </section>
 
+    <!-- Tour Booking Form -->
+<section class="section booking-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Book This Tour</h2>
+      <p>Reserve your spot today – we’ll confirm within 24 hours.</p>
+    </div>
+
+    <form name="booking" method="POST" netlify data-aos="fade-up" class="booking-form">
+      <input type="hidden" name="form-name" value="booking" />
+      <input type="hidden" name="tour" value="Northern Jaffna Tour" /> <!-- Change per tour page -->
+
+      <div class="form-group">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+      </div>
+
+      <div class="form-group">
+        <input type="date" name="date" required />
+        <input type="number" name="guests" placeholder="Number of Guests" min="1" required />
+      </div>
+
+      <textarea name="notes" placeholder="Any special requests?" rows="4"></textarea>
+
+      <button type="submit" class="btn btn-primary">Submit Booking Request</button>
+    </form>
+  </div>
+</section>
+
     <a href="index.html#tours" class="btn btn-outline">← Back to Tours</a>
   </div>
 </section>
