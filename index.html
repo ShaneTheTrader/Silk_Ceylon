@@ -85,20 +85,31 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
-<section id="home" class="hero-modern">
+  <!-- Hero Section with Crossfade -->
+<section id="home" class="hero-modern crossfade-hero">
+  <!-- Background layers -->
+  <div class="bg-slide bg1 active"></div>
+  <div class="bg-slide bg2"></div>
+
   <div class="hero-content-wrapper">
+    <div class="hero-heading-centered">
+      <span class="hero-subtitle">DISCOVER</span>
+      <h1 class="hero-title-main">SRI LANKA</h1>
+      <h1 class="hero-title-reflection">SRI LANKA</h1>
+    </div>
+  </div>
+</section>
 
     <!-- Centered Heading -->
     <div class="hero-heading-centered">
-  <span class="hero-subtitle">DISCOVER</span>
+      <span class="hero-subtitle">DISCOVER</span>
 
-  <!-- Main gold gradient text -->
-  <h1 class="hero-title-main">SRI LANKA</h1>
+      <!-- Main gold gradient text -->
+      <h1 class="hero-title-main">SRI LANKA</h1>
 
-  <!-- Reflection below -->
-  <h1 class="hero-title-reflection">SRI LANKA</h1>
-</div>
+      <!-- Reflection below -->
+      <h1 class="hero-title-reflection">SRI LANKA</h1>
+    </div>
   </div>
 </section>
 
@@ -108,6 +119,7 @@
     From the golden beaches of the South to the misty mountains of the Hill Country, Sri Lanka is a land of wonder, history, and culture. Whether you seek relaxation, adventure, or spirituality, this tropical paradise welcomes you.
   </p>
 </div>
+
 
 
   <!-- Video Section -->
@@ -446,7 +458,7 @@
   <div class="overlay" id="overlay"></div>
 
   <!-- Floating WhatsApp Icon -->
-  <a href="https://wa.me/94XXXXXXXXX" class="whatsapp-float" target="_blank">
+  <a href="https://wa.me/94752921423" class="whatsapp-float" target="_blank">
     <i class="fab fa-whatsapp"></i>
   </a>
 
@@ -466,6 +478,67 @@
     });
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+
+  <script>
+  const hero = document.querySelector('.rotating-hero');
+  const heroImages = [
+    "https://i.ibb.co/jk8V4jdT/Sri-Lanka-Beach.webp",
+    "https://i.ibb.co/35sBXndB/Luxury-7-day-tour-blog.webp",
+    "https://i.ibb.co/1Gr8p9LV/srilanka-wtaerfalls-8.webp",
+    "https://i.ibb.co/JFB5j5x5/sri-lanka-beaches-Blog-11.webp",
+    "https://i.ibb.co/r2yGNWNp/Stupa-Sri-Lanka.webp"
+  ];
+  let currentIndex = 0;
+
+  function rotateHeroBackground() {
+    hero.style.backgroundImage = `url('${heroImages[currentIndex]}')`;
+    currentIndex = (currentIndex + 1) % heroImages.length;
+  }
+
+  // Start rotation
+  rotateHeroBackground(); // Load first image
+  setInterval(rotateHeroBackground, 5000); // Rotate every 5s
+</script>
+
+<script>
+  const images = [
+    "https://i.ibb.co/jk8V4jdT/Sri-Lanka-Beach.webp",
+    "https://i.ibb.co/35sBXndB/Luxury-7-day-tour-blog.webp",
+    "https://i.ibb.co/1Gr8p9LV/srilanka-wtaerfalls-8.webp",
+    "https://i.ibb.co/JFB5j5x5/sri-lanka-beaches-Blog-11.webp",
+    "https://i.ibb.co/r2yGNWNp/Stupa-Sri-Lanka.webp"
+  ];
+
+  const bg1 = document.querySelector('.bg1');
+  const bg2 = document.querySelector('.bg2');
+  let index = 0;
+  let showFirst = true;
+
+  function crossfadeBackground() {
+    const nextImage = images[index];
+    if (showFirst) {
+      bg2.style.backgroundImage = `url('${nextImage}')`;
+      bg2.classList.add('active');
+      bg1.classList.remove('active');
+    } else {
+      bg1.style.backgroundImage = `url('${nextImage}')`;
+      bg1.classList.add('active');
+      bg2.classList.remove('active');
+    }
+
+    showFirst = !showFirst;
+    index = (index + 1) % images.length;
+  }
+
+  // Set initial images
+  bg1.style.backgroundImage = `url('${images[0]}')`;
+  bg1.classList.add('active');
+  index = 1;
+
+  // Start rotation
+  setInterval(crossfadeBackground, 6000); // every 6 seconds
+</script>
+
 
 </body>
 </html>
