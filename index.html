@@ -179,6 +179,88 @@
   </div>
 </section>
 
+<!-- Promo Cards Section -->
+<section class="special-experiences">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-subtitle">Curated For You</p>
+      <h2 class="section-title">Unique Sri Lankan Experiences</h2>
+      <span class="section-underline"></span>
+  </div>
+    <div class="flip-card-grid">
+
+      <!-- Card 1: Cooking with Locals -->
+      <div class="flip-card">
+        <div class="flip-inner">
+          <div class="flip-front" style="background-image: url('https://i.ibb.co/Ngn2wxTk/Tourist-Europe-Famil.webp');">
+            <div class="card-overlay">
+              <h3>Cook & Lunch</h3>
+              <p>With a Local Family</p>
+            </div>
+          </div>
+          <div class="flip-back">
+            <h4>🍛 Authentic Culinary Experience</h4>
+            <p>Join a local home to prepare traditional Sri Lankan curries & share a warm lunch together.</p>
+            <a href="#" class="btn btn-primary open-booking" data-experience="Cook & Lunch with Local Family">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Safari -->
+      <div class="flip-card">
+        <div class="flip-inner">
+          <div class="flip-front" style="background-image: url('https://i.ibb.co/4R3HFX3C/Wild-safari-in-Yala.webp');">
+            <div class="card-overlay">
+              <h3>Wild Safari</h3>
+              <p>Yala or Udawalawe</p>
+            </div>
+          </div>
+          <div class="flip-back">
+            <h4>🦁 Sri Lankan Wildlife Safari</h4>
+            <p>Track elephants, leopards & peacocks in one of Asia’s best nature reserves.</p>
+            <a href="#" class="btn btn-primary open-booking" data-experience="Wild Safari Yala or Udawalawa">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Snorkeling -->
+      <div class="flip-card">
+        <div class="flip-inner">
+          <div class="flip-front" style="background-image: url('https://i.ibb.co/twvrMc6C/A-tourist-snorkeling.webp');">
+            <div class="card-overlay">
+              <h3>Snorkel & Dive</h3>
+              <p>Hikkaduwa / Unawatuna</p>
+            </div>
+          </div>
+          <div class="flip-back">
+            <h4>🌊 Coral Reef Adventures</h4>
+            <p>Swim alongside tropical fish and turtles in crystal-clear waters.</p>
+            <a href="#" class="btn btn-primary open-booking" data-experience="Snorkel & Dive in Hikka & Unawatuna">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Hiking -->
+      <div class="flip-card">
+        <div class="flip-inner">
+          <div class="flip-front" style="background-image: url('https://i.ibb.co/JFGr2rJK/Tourist-group-hiking.webp');">
+            <div class="card-overlay">
+              <h3>Mountain Hikes</h3>
+              <p>Best Scenic Treks</p>
+            </div>
+          </div>
+          <div class="flip-back">
+            <h4>🥾 Hike the Highlands</h4>
+            <p>Experience Sri Lanka’s lush trails through tea fields & cloud forests.</p>
+            <a href="#" class="btn btn-primary open-booking" data-experience="Mountain Hikes in Best scenic Treks">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
   <!-- Services Section -->
   <section id="services" class="section services">
     <div class="container">
@@ -536,7 +618,51 @@
   index = 1;
 
   // Start rotation
-  setInterval(crossfadeBackground, 6000); // every 6 seconds
+  setInterval(crossfadeBackground, 4000); // every 4 seconds
+</script>
+
+<div id="bookingModal" class="booking-modal">
+  <div class="booking-modal-content">
+    <span class="close-btn" id="closeModal">&times;</span>
+    <h3>Book: <span id="experienceName">Experience</span></h3>
+    <form id="bookingForm" name="booking" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="booking" />
+      <input type="text" name="name" placeholder="Your Full Name" required>
+      <input type="email" name="email" placeholder="Email Address" required>
+      <input type="tel" name="phone" placeholder="Phone Number" required>
+      <input type="number" name="guests" placeholder="No. of Adults" min="1" required>
+      <input type="number" name="children" placeholder="No. of Children" min="0">
+      <input type="date" name="arrival" required>
+      <textarea name="message" placeholder="Additional Requests (Optional)"></textarea>
+      <input type="hidden" name="experience" id="experienceInput">
+      <button type="submit" class="btn btn-primary">Submit Booking</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Open modal and populate tour title
+  document.querySelectorAll('.open-booking').forEach(button => {
+    button.addEventListener('click', e => {
+      e.preventDefault();
+      const experience = button.dataset.experience;
+      document.getElementById('experienceName').textContent = experience;
+      document.getElementById('experienceInput').value = experience;
+      document.getElementById('bookingModal').style.display = 'flex';
+    });
+  });
+
+  // Close modal
+  document.getElementById('closeModal').addEventListener('click', () => {
+    document.getElementById('bookingModal').style.display = 'none';
+  });
+
+  // Optional: Close when clicking outside the modal
+  window.addEventListener('click', e => {
+    if (e.target === document.getElementById('bookingModal')) {
+      document.getElementById('bookingModal').style.display = 'none';
+    }
+  });
 </script>
 
 
