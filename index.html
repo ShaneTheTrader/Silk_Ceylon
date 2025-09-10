@@ -634,6 +634,12 @@
       <input type="number" name="children" placeholder="No. of Children" min="0">
       <input type="date" name="arrival" required>
       <textarea name="message" placeholder="Additional Requests (Optional)"></textarea>
+
+      <div class="honeypot-field">
+          <label for="website-url">Leave this blank</label>
+          <input type="text" name="website-url" id="website-url" autocomplete="off">
+      </div>
+
       <input type="hidden" name="experience" id="experienceInput">
       <button type="submit" class="btn btn-primary">Submit Booking</button>
     </form>

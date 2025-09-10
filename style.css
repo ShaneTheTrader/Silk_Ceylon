@@ -2209,3 +2209,13 @@ body.dark-mode .booking-modal-content {
 .close-btn:hover {
   color: #d4af37;
 }
+
+/* Honeypot Security */
+.honeypot-field {
+  position: absolute !important;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
