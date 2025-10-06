@@ -2219,3 +2219,172 @@ body.dark-mode .booking-modal-content {
   height: 1px;
   overflow: hidden;
 }
+
+/* === IMPROVED FORM STYLES === */
+.search-error {
+  color: #ff4444 !important;
+  font-size: 14px;
+  margin-top: 8px;
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* Better input focus states */
+#searchCity:focus {
+  border: 2px solid var(--gold) !important;
+  outline: none;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+/* Loading state for button */
+#searchBtn:disabled {
+  background-color: #cccccc !important;
+  cursor: not-allowed;
+}
+
+/* === MOBILE TOUCH FIXES === */
+@media (max-width: 768px) {
+  /* Make touch targets at least 44px for accessibility */
+  .menu-item {
+    padding: 15px 10px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .btn {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Improve mobile menu toggle */
+  .menu-toggle {
+    width: 44px;
+    height: 44px;
+    padding: 12px;
+  }
+  
+  /* Better mobile font sizes */
+  .hero-title-main {
+    font-size: 2.5rem !important;
+    letter-spacing: 3px;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+  }
+  
+  /* Fix mobile gallery */
+  .gallery-masonry {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+  }
+  
+  .gallery-item.wide,
+  .gallery-item.tall {
+    grid-column: 1;
+    grid-row: 1;
+  }
+}
+
+/* Mobile Hero Improvements */
+@media (max-width: 768px) {
+  .hero-modern {
+    height: 70vh;
+    min-height: 500px;
+  }
+  
+  .hero-content-wrapper {
+    padding: 20px;
+  }
+  
+  .glass-box {
+    padding: 20px;
+    margin: 20px;
+  }
+  
+  .hero-description-box {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    max-width: 100%;
+    margin: 20px;
+    margin-top: 30px;
+  }
+  
+  /* Hide description box on scroll for mobile */
+  .hero-description-box.scroll-hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+  }
+}
+
+/* Better Hero Image Loading */
+.hero-modern {
+  background: 
+    linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)),
+    url('https://i.ibb.co/YFMhGs5b/Hero-main-Aerial-Photo.webp') center/cover no-repeat;
+}
+
+/* Add low-quality image placeholder for faster loading */
+.hero-modern::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #0A0A0A 0%, #2c2c2c 100%);
+  z-index: 0;
+}
+
+.hero-modern.loaded::before {
+  display: none;
+}
+
+/* === LOADING STATES === */
+.btn-loading {
+  position: relative;
+  color: transparent !important;
+}
+
+.btn-loading::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  left: 50%;
+  margin-left: -10px;
+  margin-top: -10px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s ease-in-out infinite;
+}
+
+/* Skeleton loading for images */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+body.dark-mode .skeleton {
+  background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
+  background-size: 200% 100%;
+}

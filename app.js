@@ -1,21 +1,80 @@
-// Mobile Menu Toggle
+// IMPROVED Mobile Menu with Accessibility
 const menuToggle = document.getElementById('menuToggle');
 const nav = document.querySelector('.nav');
 const overlay = document.getElementById('overlay');
 const body = document.body;
 
-menuToggle.addEventListener('click', function() {
-  this.classList.toggle('active');
-  nav.classList.toggle('active');
+// Add ARIA labels for accessibility
+menuToggle.setAttribute('aria-label', 'Toggle navigation menu');
+menuToggle.setAttribute('aria-expanded', 'false');
+nav.setAttribute('aria-hidden', 'true');
+
+function toggleMenu() {
+  const isOpen = nav.classList.toggle('active');
+  
+  // Update accessibility attributes
+  menuToggle.setAttribute('aria-expanded', isOpen.toString());
+  nav.setAttribute('aria-hidden', (!isOpen).toString());
+  
+  // Toggle classes
+  menuToggle.classList.toggle('active');
   overlay.classList.toggle('active');
   body.classList.toggle('no-scroll');
 
-  const spans = this.querySelectorAll('span');
-  const isOpen = nav.classList.contains('active');
+  // Hamburger animation
+  const spans = menuToggle.querySelectorAll('span');
   spans[0].style.transform = isOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none';
   spans[1].style.opacity = isOpen ? '0' : '1';
   spans[2].style.transform = isOpen ? 'rotate(-45deg) translate(7px, -6px)' : 'none';
+
+  // Focus management for accessibility
+  if (isOpen) {
+    // Focus on first menu item when opening
+    const firstMenuItem = nav.querySelector('.menu-item');
+    if (firstMenuItem) firstMenuItem.focus();
+  } else {
+    // Return focus to menu toggle when closing
+    menuToggle.focus();
+  }
+}
+
+// Event listeners
+menuToggle.addEventListener('click', toggleMenu);
+overlay.addEventListener('click', closeMenu);
+
+// Close menu when clicking menu items
+document.querySelectorAll('.menu-item').forEach(link => {
+  link.addEventListener('click', closeMenu);
+  link.setAttribute('tabindex', '0'); // Make focusable
 });
+
+// Close menu with Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && nav.classList.contains('active')) {
+    closeMenu();
+  }
+});
+
+// Improved close function
+function closeMenu() {
+  menuToggle.classList.remove('active');
+  nav.classList.remove('active');
+  overlay.classList.remove('active');
+  body.classList.remove('no-scroll');
+
+  // Reset accessibility
+  menuToggle.setAttribute('aria-expanded', 'false');
+  nav.setAttribute('aria-hidden', 'true');
+
+  // Reset hamburger animation
+  const spans = menuToggle.querySelectorAll('span');
+  spans[0].style.transform = 'none';
+  spans[1].style.opacity = '1';
+  spans[2].style.transform = 'none';
+
+  // Return focus
+  menuToggle.focus();
+}
 
 // Close menu when clicking overlay
 overlay.addEventListener('click', closeMenu);
@@ -137,35 +196,28 @@ $(document).ready(function(){
     }
   });
 });
-window.addEventListener('load', function () {
-  const preloader = document.querySelector('.preloader');
-  
-  // Force-hide the preloader after 3 seconds (even if assets fail)
-  setTimeout(() => {
-    preloader.style.opacity = '0';
-    setTimeout(() => {
-      preloader.style.display = 'none';
-    }, 500);
-  }, 3000); // Adjust timeout as needed
-});
 
+// FIXED Preloader - Single load event
 window.addEventListener('load', function () {
   const preloader = document.querySelector('.preloader');
   const descBox = document.querySelector('.hero-description-box');
 
-  // Fade out preloader
+  // Hide preloader after 2 seconds max
   setTimeout(() => {
-    if (preloader) preloader.style.opacity = '0';
-
-    // Remove preloader from flow
-    setTimeout(() => {
-      if (preloader) preloader.style.display = 'none';
-
-      // Show description box
-      if (descBox) descBox.classList.add('visible');
-
-    }, 500);
-  }, 1000);
+    if (preloader) {
+      preloader.style.opacity = '0';
+      setTimeout(() => {
+        preloader.style.display = 'none';
+        
+        // Show description box after preloader hides
+        if (descBox) {
+          descBox.classList.add('visible');
+          descBox.style.opacity = '1';
+          descBox.style.transform = 'translateY(0)';
+        }
+      }, 500);
+    }
+  }, 2000);
 });
 
 // Scroll: hide description box
@@ -184,15 +236,55 @@ window.addEventListener('scroll', function () {
   }
 });
 
-// Booking.com city search
+// IMPROVED Hotel Search with Better UX
 document.getElementById('searchBtn').addEventListener('click', function () {
-  const city = document.getElementById('searchCity').value.trim();
+  const cityInput = document.getElementById('searchCity');
+  const city = cityInput.value.trim();
+  const searchBtn = this;
 
-  if (city) {
-    const bookingUrl = `https://www.booking.com/searchresults.html?ss=${encodeURIComponent(city)}`;
-    window.open(bookingUrl, '_blank'); // Opens in new tab
-  } else {
-    alert('Please enter a city name!');
+  // Remove any existing error messages
+  const existingError = document.querySelector('.search-error');
+  if (existingError) {
+    existingError.remove();
   }
+
+  if (!city) {
+    // Show error message below input (better than alert)
+    const errorElement = document.createElement('div');
+    errorElement.className = 'search-error';
+    errorElement.innerHTML = '✗ Please enter a city name to search';
+    errorElement.style.color = '#ff4444';
+    errorElement.style.marginTop = '10px';
+    errorElement.style.fontSize = '14px';
+    
+    cityInput.parentNode.appendChild(errorElement);
+    
+    // Add red border to input
+    cityInput.style.border = '2px solid #ff4444';
+    
+    // Remove error after 3 seconds
+    setTimeout(() => {
+      errorElement.remove();
+      cityInput.style.border = '';
+    }, 3000);
+    
+    return;
+  }
+
+  // Show loading state
+  searchBtn.innerHTML = 'Searching...';
+  searchBtn.disabled = true;
+
+  // Small delay to show loading state
+  setTimeout(() => {
+    const bookingUrl = `https://www.booking.com/searchresults.html?ss=${encodeURIComponent(city)}`;
+    window.open(bookingUrl, '_blank');
+    
+    // Reset button after 1 second
+    setTimeout(() => {
+      searchBtn.innerHTML = 'Search Hotels';
+      searchBtn.disabled = false;
+    }, 1000);
+  }, 500);
 });
 

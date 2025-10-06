@@ -5,6 +5,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Silk Ceylon by D&I Lanka Trading | Luxury Sri Lanka Travel</title>
+  <!-- Essential Meta Tags -->
+  <meta name="description" content="Silk Ceylon - Luxury Travel & Tours in Sri Lanka. Experience bespoke tours, cultural journeys, and adventure trips across beautiful Sri Lanka.">
+  <meta name="keywords" content="Sri Lanka tours, luxury travel, Colombo tours, Galle fort, Kandy cultural tours, adventure Sri Lanka">
+  <meta name="author" content="Silk Ceylon">
   <meta name="description" content="Premium luxury tours in Sri Lanka" />
 
   <!-- Canonical URL -->
@@ -48,6 +52,41 @@
 
   <!-- Lightbox2 CSS -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet" />
+
+  <!-- Simple Analytics Tracking -->
+  <script>
+  // Track outbound clicks to Booking.com
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchBtn = document.getElementById('searchBtn');
+    if (searchBtn) {
+      searchBtn.addEventListener('click', function() {
+        const city = document.getElementById('searchCity').value.trim();
+        if (city) {
+          // Simple tracking - you can replace with Google Analytics later
+          console.log('Hotel search for:', city);
+        
+          // Track in localStorage (basic analytics)
+          const searches = JSON.parse(localStorage.getItem('hotelSearches') || '[]');
+          searches.push({
+            city: city,
+            date: new Date().toISOString()
+          });
+          localStorage.setItem('hotelSearches', JSON.stringify(searches));
+        }
+      });
+    }
+  
+  // Track menu interactions
+  const menuToggle = document.getElementById('menuToggle');
+  if (menuToggle) {
+    menuToggle.addEventListener('click', function() {
+      const isOpen = document.querySelector('.nav').classList.contains('active');
+      console.log('Mobile menu', isOpen ? 'opened' : 'closed');
+    });
+  }
+});
+</script>
+
 </head>
 <body>
 
@@ -61,7 +100,7 @@
     <div class="container">
       
   <a href="#" class="logo">
-  <img src="https://i.ibb.co/8LFvdM3Z/Silk-Ceylon-Logo.webp" alt="Silk Ceylon Logo" class="logo-img pulse-logo">
+  <img src="https://i.ibb.co/8LFvdM3Z/Silk-Ceylon-Logo.webp" alt="Silk Ceylon Logo" class="logo-img pulse-logo" loading="lazy">
 </a>     
       <!-- Dark Mode Toggle -->
       <button id="darkToggle" class="dark-toggle" title="Toggle Dark Mode">
@@ -307,7 +346,7 @@
       
       <!-- Galle Tour -->
       <div class="destination-card">
-        <img src="https://i.ibb.co/S4JqKZ30/Galle-Fort-1.webp" alt="Galle Fort">
+        <img src="https://i.ibb.co/S4JqKZ30/Galle-Fort-1.webp" alt="Galle Fort" loading="lazy">
         <div class="card-content">
           <span class="card-subtitle">GALLE AT A GLANCE</span>
           <h3>Galle Day Tour</h3>
@@ -317,7 +356,7 @@
 
       <!-- Kandy -->
       <div class="destination-card">
-        <img src="https://i.ibb.co/7dD9Y75j/Kandy-Temple-2.webp" alt="Kandy Temple">
+        <img src="https://i.ibb.co/7dD9Y75j/Kandy-Temple-2.webp" alt="Kandy Temple" loading="lazy">
         <div class="card-content">
           <span class="card-subtitle">KANDY IN FOCUS</span>
           <h3>Glory Tour of Kandy</h3>
@@ -327,7 +366,7 @@
 
       <!-- Dambulla -->
       <div class="destination-card">
-        <img src="https://i.ibb.co/GfgrR0Wt/Sigiriya-Aerial.webp" alt="Sigiriya Rock Fort">
+        <img src="https://i.ibb.co/GfgrR0Wt/Sigiriya-Aerial.webp" alt="Sigiriya Rock Fort" loading="lazy">
         <div class="card-content">
           <span class="card-subtitle">CAVE & CLIFFS</span>
           <h3>Adventure of Dambulla</h3>
@@ -337,7 +376,7 @@
 
       <!-- Nuwara Eliya -->
       <div class="destination-card">
-        <img src="https://i.ibb.co/JFtzhrXN/nuwara-elya-1.webp" alt="NuwaraEliya WaterFalls">
+        <img src="https://i.ibb.co/JFtzhrXN/nuwara-elya-1.webp" alt="NuwaraEliya WaterFalls" loading="lazy">
         <div class="card-content">
           <span class="card-subtitle">HILL ESCAPE</span>
           <h3>Chilling Nuwara Eliya</h3>
@@ -346,7 +385,7 @@
       </div>
       <!-- Colombo -->
       <div class="destination-card">
-        <img src="https://i.ibb.co/bRYbPsJZ/Colombo-City-landscape.webp" alt="Colombo City">
+        <img src="https://i.ibb.co/bRYbPsJZ/Colombo-City-landscape.webp" alt="Colombo City" loading="lazy">
         <div class="card-content">
           <span class="card-subtitle">URBAN CULTURE</span>
           <h3>Busy Colombo Day Tour</h3>
@@ -356,7 +395,7 @@
 
       <!-- Jaffna -->
       <div class="destination-card">
-        <img src="https://i.ibb.co/xt5DzqQr/Jaffna-Fort.webp" alt="jaffna Bike rider">
+        <img src="https://i.ibb.co/xt5DzqQr/Jaffna-Fort.webp" alt="jaffna Bike rider" loading="lazy">
         <div class="card-content">
           <span class="card-subtitle">NORTHERN HERITAGE</span>
           <h3>Jaffna</h3>
@@ -366,7 +405,7 @@
 
       <!-- Anuradhapura -->
       <div class="destination-card">
-        <img src="https://i.ibb.co/23CVwVkN/Anuradhapura-stupa.webp" alt="Anuradhapura stupa">
+        <img src="https://i.ibb.co/23CVwVkN/Anuradhapura-stupa.webp" alt="Anuradhapura stupa" loading="lazy">
         <div class="card-content">
           <span class="card-subtitle">SACRED CITY</span>
           <h3>City of Kings Tour</h3>
@@ -376,7 +415,7 @@
 
       <!-- Arugam Bay -->
       <div class="destination-card">
-        <img src="https://i.ibb.co/Q7wGHXXx/arugambay-surf.webp" alt="aurgambay Surfer">
+        <img src="https://i.ibb.co/Q7wGHXXx/arugambay-surf.webp" alt="aurgambay Surfer" loading="lazy">
         <div class="card-content">
           <span class="card-subtitle">SURF + SUN</span>
           <h3>Surfing Paradise Tour</h3>
@@ -386,7 +425,7 @@
 
       <!-- Yala -->
       <div class="destination-card">
-        <img src="https://i.ibb.co/dsRz2wQC/yala-safari.webp" alt="Yala Safari">
+        <img src="https://i.ibb.co/dsRz2wQC/yala-safari.webp" alt="Yala Safari" loading="lazy">
         <div class="card-content">
           <span class="card-subtitle">WILD SOUTH</span>
           <h3>Wildlife Encounter Tour</h3>
@@ -396,7 +435,7 @@
 
       <!-- Kitulgala -->
       <div class="destination-card">
-        <img src="https://i.ibb.co/DDgZ0dN7/water-rafting.webp" alt="white water rafting">
+        <img src="https://i.ibb.co/DDgZ0dN7/water-rafting.webp" alt="white water rafting" loading="lazy">
         <div class="card-content">
           <span class="card-subtitle">WHITE WATER</span>
           <h3>Run through the White Waters</h3>
